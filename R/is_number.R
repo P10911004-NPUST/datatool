@@ -1,16 +1,16 @@
 `_is_number` <- function(
-        x,
+        `_x` = double(1),
+        `_include_boolean` = FALSE,
+        `_include_complex` = TRUE,
         `_include_infinite` = FALSE,
-        `_include_complex` = FALSE,
         `_include_nan` = FALSE
 ) {
-    ret_bool <- is.numeric(x)
+    ret_bool <- is.numeric(`_x`)
 
-    if ( ! `_include_infinite` )
-        ret_bool[is.infinite(ret_bool)] <- FALSE
-
-    if (`_include_complex`)
-        ret_bool[is.complex(ret_bool)] <- TRUE
+    if ( `_include_boolean` ) ret_bool <- ret_bool | isTRUE(`_x`) | isFALSE(`_x`)
+    if ( `_include_complex` ) ret_bool <- ret_bool | is.complex(`_x`)
+    if ( ! `_include_infinite` ) ret_bool <- ret_bool & is.finite(`_x`)
+    if ( ! `_include_nan` ) ret_bool <- ret_bool & !is.nan(`_x`)
 
     return(ret_bool)
 
@@ -22,7 +22,5 @@
     }
     #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 }
-
-is.infinite(Inf)
 
 
