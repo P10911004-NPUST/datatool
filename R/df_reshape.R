@@ -15,7 +15,7 @@
 #' wide_to_long(df0, cols = c("A", "B", "D"), keys_name = "group", vals_name = "length")
 #' wide_to_long(df0, cols = c(2, 3, 5), keys_name = "group", vals_name = "length", keep_unused = FALSE)
 wide_to_long <- function(
-        data = data.frame(),
+        data,
         cols,
         keys_name = character(1),
         vals_name = character(1),
@@ -79,4 +79,22 @@ wide_to_long <- function(
 
 }
 
+#
+# long_to_wide <- function(
+#         data,
+#         cols,
+#         val,
+#         keep_unused = TRUE
+# ) {
+#
+#     if (inherits(data, "data.frame")) mat <- as.matrix(data)
+# }
+#
+# data("iris")
+# df <- iris
+# reshape(df, direction = "wide",
+#         idvar = c("Petal.Width", "Petal.Length", "Sepal.Width"),  # exclude the `val` column
+#         timevar = "Species", # Which column as key
+#         sep = ""
+# )
 
