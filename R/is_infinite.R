@@ -1,11 +1,12 @@
-#' @title Identify Infinite Numbers
+#' @title
+#' Identify Infinite Numbers
 #'
 #' @description
 #' A wrapper for `base::is.infinite()`.
 #'
 #' @param x An atomic or recursive vector (i.e., c(), matrix(), list(), or data.frame()).
 #'
-#' @return A logical vector which has the same length / dimensions with `x`.
+#' @return A logical vector which has the same length and/or dimensions with `x`.
 #' @export
 #'
 #' @examples
@@ -42,7 +43,9 @@ is_infinite.data.frame <- function(x) .is_infinite_dataframe(x)
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 .is_infinite_vector <- function(vct)
 {
-    if ( is.null(vct) | length(vct) == 0 ) return(FALSE)
+    if ( is.null(vct) | length(vct) == 0 )
+        return(FALSE)
+
     vapply(
         X = vct,
         FUN = is.infinite,
@@ -54,8 +57,8 @@ is_infinite.data.frame <- function(x) .is_infinite_dataframe(x)
 
 .is_infinite_matrix <- function(mat)
 {
-    if ( is.null(mat) | length(mat) == 0 ) return(FALSE)
-    if (is.null(mat)) return(FALSE)
+    if ( is.null(mat) | length(mat) == 0 )
+        return(FALSE)
 
     shape <- dim(mat)
     ret <- mapply(
@@ -69,7 +72,8 @@ is_infinite.data.frame <- function(x) .is_infinite_dataframe(x)
 
 .is_infinite_list <- function(lst)
 {
-    if (is.null(lst) | length(lst) == 0) return(FALSE)
+    if (is.null(lst) | length(lst) == 0)
+        return(FALSE)
 
     if ( is.null(dim(lst)) & inherits(lst, "list") )
     {

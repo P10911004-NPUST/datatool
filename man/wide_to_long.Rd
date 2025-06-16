@@ -2,7 +2,7 @@
 % Please edit documentation in R/df_reshape.R
 \name{wide_to_long}
 \alias{wide_to_long}
-\title{Reshape a data frame from wide format to long format}
+\title{Data Reshape}
 \usage{
 wide_to_long(
   data,
@@ -27,7 +27,7 @@ wide_to_long(
 A reshaped data.frame
 }
 \description{
-Reshape a data frame from wide format to long format
+Reshape a data frame from wide format to long format.
 }
 \examples{
 set.seed(1)

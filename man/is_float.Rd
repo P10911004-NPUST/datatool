@@ -16,12 +16,12 @@ is_float(x, include_Inf = FALSE, include_NaN = FALSE, include_NA_real = FALSE)
 \item{include_NA_real}{Logical (default: FALSE). Consider \code{NA_real_} as float?}
 }
 \value{
-A logical vector which has the same length / dimensions with \code{x}.
+A logical vector which has the same length and/or dimensions with \code{x}.
 }
 \description{
 A wrapper for \code{base::is.double()}. By default, \code{is_float()} doesn't consider
-\code{Inf}, \code{NaN}, and \code{NA_real_} as floating-point format,
-which is differ from \code{base::is.double()}.
+\code{Inf}, \code{NaN}, and \code{NA_real_} as floating-point value (so return \code{FALSE}),
+which is different from \code{base::is.double()}.
 }
 \examples{
 test <- list(

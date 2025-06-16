@@ -14,12 +14,11 @@ is_finite(x, include_boolean = FALSE, include_complex = TRUE)
 \item{include_complex}{Logical (default: TRUE). Consider complex values as finite?}
 }
 \value{
-A logical vector which has the same length / dimensions with \code{x}.
+A logical vector which has the same length and/or dimensions with \code{x}.
 }
 \description{
-A wrapper for \code{base::is.finite()}. By default, \code{statool::is_finite()} doesn't
-consider logical value (i.e., \code{TRUE} and \code{FALSE}) as finite values,
-which is differ from \code{base::is.finite()}.
+A wrapper for \code{base::is.finite()}. Unlike the base implementation,
+this version excludes logical values from being considered finite by default.
 }
 \examples{
 test <- list(

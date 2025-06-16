@@ -10,19 +10,24 @@ is_character(x)
 \item{x}{An atomic or recursive vector (i.e., c(), matrix(), list(), or data.frame()).}
 }
 \value{
-A logical vector which has the same length / dimensions with \code{x}.
+A logical vector which has the same length and/or dimensions with \code{x}.
 }
 \description{
-A wrapper for the base::is.character().
+A wrapper for the \code{base::is.character()}.
 }
 \examples{
 test <- list(
-    num = c(1.2, -3.3, 7.5, 2.9),
+    int = 1:5,
+    dbl = c(1.2, -3.3, 7.5, 2.9),
     char = list(LETT = LETTERS[1:3], lett = letters[1:3]),
     cplx = matrix(complex(real = 1:12, imaginary = 3:9), nrow = 3),
     bool = data.frame(true = rep(TRUE, 5), false = rep(FALSE, 5)),
-    na = list(NA, NA_character_, NA_complex_, NA_integer_, NA_real_),
-    special = list(TRUE, FALSE, NaN, NULL)
+    na = list(na_bool = NA,
+              na_char = NA_character_,
+              na_cplx = NA_complex_,
+              na_int = NA_integer_,
+              na_dbl = NA_real_),
+    special = list(true = TRUE, false = FALSE, nan = NaN, null = NULL)
 )
 is_character(test)
 }

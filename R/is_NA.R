@@ -1,12 +1,15 @@
 #' @title
-#' Identify Character Values
+#' Identify `NA` (not available)
 #'
 #' @description
-#' A wrapper for the `base::is.character()`.
+#' A wrapper for the `base::is.na()`.
+#' Identify `NA` (boolean), `NA_character_`, `NA_complex_`, `NA_integer_`, and `NA_real_`,
+#' but exclude `NaN`.
+#' Similar to `base::is.na(x) & !base::is.nan(x)`.
 #'
 #' @param x An atomic or recursive vector (i.e., c(), matrix(), list(), or data.frame()).
 #'
-#' @return A logical vector which has the same length and/or dimensions with `x`.
+#' @returns A logical vector which has the same length and/or dimensions with `x`.
 #' @export
 #'
 #' @examples
@@ -23,46 +26,56 @@
 #'               na_dbl = NA_real_),
 #'     special = list(true = TRUE, false = FALSE, nan = NaN, null = NULL)
 #' )
-#' is_character(test)
-is_character <- function(x)
+#' is_NA(test)
+is_NA <- function(x)
 {
-    UseMethod("is_character")
+    UseMethod("is_NA")
 }
+
 #' @export
-is_character.default <- function(x) .is_character_vector(x)
+is_NA.default <- function(x) .is_NA_vector(x)
+
 #' @export
-is_character.matrix <- function(x) .is_character_matrix(x)
+is_NA.matrix <- function(x) .is_NA_matrix(x)
+
 #' @export
-is_character.list <- function(x) .is_character_list(x)
+is_NA.list <- function(x) .is_NA_list(x)
+
 #' @export
-is_character.data.frame <- function(x) .is_character_dataframe(x)
+is_NA.data.frame <- function(x) .is_NA_dataframe(x)
 
 
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # Internal functions ====
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-.is_character_vector <- function(vct)
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+.is_NA_vector <- function(vct)
 {
     if ( is.null(vct) | length(vct) == 0 )
         return(FALSE)
 
     vapply(
         X = vct,
-        FUN = is.character,
+        FUN = function(x) xor(is.na(x), is.nan(x)),
         FUN.VALUE = logical(1),
         USE.NAMES = FALSE
     )
 }
 
 
-.is_character_matrix <- function(mat)
+.is_NA_matrix <- function(mat)
 {
     if ( is.null(mat) | length(mat) == 0 )
         return(FALSE)
 
     shape <- dim(mat)
     ret <- mapply(
-        FUN = is.character,
+        FUN = function(x)
+        {
+            if ( is.null(x) | length(x) == 0 )
+                return(FALSE)
+            else
+                return(xor(is.na(x), is.nan(x)))
+        },
         x = mat,
         USE.NAMES = TRUE
     )
@@ -71,41 +84,43 @@ is_character.data.frame <- function(x) .is_character_dataframe(x)
 }
 
 
-.is_character_list <- function(lst)
+.is_NA_list <- function(lst)
 {
     if (is.null(lst) | length(lst) == 0)
         return(FALSE)
 
-    if (is.null(dim(lst)) & inherits(lst, "list"))
+    if ( is.null(dim(lst)) & inherits(lst, "list") )
     {
         ret <- lapply(
             X = lst,
             FUN = function(x)
             {
-                if (is.null(x) | length(x) == 0) return(FALSE)
-                .is_character_list(x)
+                if (is.null(x) | length(x) == 0)
+                    return(FALSE)
+
+                .is_NA_list(x)
             }
         )
     }
 
     if (is.atomic(lst) & is.null(dim(lst)))
-        ret <- .is_character_vector(lst)
+        ret <- .is_NA_vector(lst)
 
     if (inherits(lst, "matrix"))
-        ret <- .is_character_matrix(lst)
+        ret <- .is_NA_matrix(lst)
 
     if (inherits(lst, "data.frame"))
-        ret <- .is_character_dataframe(lst)
+        ret <- .is_NA_dataframe(lst)
 
     return(ret)
 }
 
 
-.is_character_dataframe <- function(df)
+.is_NA_dataframe <- function(df)
 {
     ret <- vapply(
         X = df,
-        FUN = .is_character_vector,
+        FUN = .is_NA_vector,
         FUN.VALUE = logical(nrow(df)),
         USE.NAMES = TRUE
     )
@@ -118,10 +133,8 @@ is_character.data.frame <- function(x) .is_character_dataframe(x)
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 if (FALSE)
 {
-    is_character(test_vector)
-    is_character(test_matrix)
-    is_character(test_list)
-    is_character(test_dataframe)
+    is_NA(test_vector)
+    is_NA(test_matrix)
+    is_NA(test_list)
+    is_NA(test_dataframe)
 }
-
-

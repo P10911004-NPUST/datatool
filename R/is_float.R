@@ -1,16 +1,17 @@
-#' @title Identify Floating-Point Numbers
+#' @title
+#' Identify Floating-Point Numbers
 #'
 #' @description
 #' A wrapper for `base::is.double()`. By default, `is_float()` doesn't consider
-#' `Inf`, `NaN`, and `NA_real_` as floating-point format,
-#' which is differ from `base::is.double()`.
+#' `Inf`, `NaN`, and `NA_real_` as floating-point value (so return `FALSE`),
+#' which is different from `base::is.double()`.
 #'
 #' @param x An atomic or recursive vector (i.e., c(), matrix(), list(), or data.frame()).
 #' @param include_Inf Logical (default: FALSE). Consider `Inf` as float?
 #' @param include_NaN Logical (default: FALSE). Consider `NaN` as float?
 #' @param include_NA_real Logical (default: FALSE). Consider `NA_real_` as float?
 #'
-#' @return A logical vector which has the same length / dimensions with `x`.
+#' @return A logical vector which has the same length and/or dimensions with `x`.
 #' @export
 #'
 #' @examples
@@ -74,16 +75,17 @@ is_float.data.frame <- function(
 }
 
 
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # Internal functions ====
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 .is_float_vector <- function(
         vct,
         include_Inf = FALSE,
         include_NaN = FALSE,
         include_NA_real = FALSE
 ) {
-    if ( is.null(vct) | length(vct) == 0 ) return(FALSE)
+    if ( is.null(vct) | length(vct) == 0 )
+        return(FALSE)
 
     vapply(
         X = vct,
@@ -113,8 +115,9 @@ is_float.data.frame <- function(
         include_NaN = FALSE,
         include_NA_real = FALSE
 ) {
-    if ( is.null(mat) | length(mat) == 0 ) return(FALSE)
-    if (is.null(mat)) return(FALSE)
+    if ( is.null(mat) | length(mat) == 0 )
+        return(FALSE)
+
     shape <- dim(mat)
     ret <- mapply(
         FUN = function(x, .include_Inf, .include_NaN, .include_NA_real)
@@ -144,7 +147,8 @@ is_float.data.frame <- function(
         include_NaN = FALSE,
         include_NA_real = FALSE
 ) {
-    if (is.null(lst) | length(lst) == 0) return(FALSE)
+    if (is.null(lst) | length(lst) == 0)
+        return(FALSE)
 
     if ( is.null(dim(lst)) & inherits(lst, "list") )
     {
@@ -152,7 +156,9 @@ is_float.data.frame <- function(
             X = lst,
             FUN = function(x, .include_Inf, .include_NaN, .include_NA_real)
             {
-                if (is.null(x) | length(x) == 0) return(FALSE)
+                if (is.null(x) | length(x) == 0)
+                    return(FALSE)
+
                 .is_float_list(x, .include_Inf, .include_NaN, .include_NA_real)
             },
             .include_Inf = include_Inf,
@@ -200,7 +206,8 @@ if (FALSE)
 {
     is_float(test_vector)
     is_float(test_matrix)
-    is_float(test_list, include_NA_real = TRUE)
+    is_float(test_matrix, include_NA_real = TRUE)
+    is_float(test_list, include_NaN = TRUE)
     is_float(test_dataframe, include_NaN = TRUE)
     is_float(test_dataframe, include_Inf = TRUE)
 }

@@ -1,4 +1,8 @@
-#' Reshape a data frame from wide format to long format
+#' @title
+#' Reshape Data Frame
+#'
+#' @description
+#' Reshape a data frame from wide format to long format.
 #'
 #' @param data A data.frame input
 #' @param cols A character/numeric vector of column names or indices to select the columns.

@@ -22,28 +22,35 @@ test_list <- list(
     bool = list(A = logical(3), B = list(B1 = c(TRUE, FALSE, TRUE)), C = logical(3)),
     na = list(
         NA_real = NA_real_,
-        B = list(
-            NA_cplx = NA_complex_,
-            Na_int = NA_integer_),
+        NA_int = NA_integer_,
+        NA_cplx = NA_complex_,
         NA_char = NA_character_),
-    nan = list(A = rep(NaN, 3), B = list(B1 = rep(NaN, 3), B2 = NaN), C = NaN),
-    null = list(A = NULL, B = list(B1 = NULL, B2 = NULL), C = list(NULL, NULL))
+    nan = list(matrix(rep(NaN, 9), 3, dimnames = list(1:3, c("A", "B", "C")))),
+    null = list(A = NULL,
+                B = list(B1 = logical(0), B2 = character(0)),
+                C = list(C1 = integer(0), C2 = complex(0)))
 )
 
 test_matrix <- list(
     int = list(A = matrix(1:12, nrow = 3, dimnames = list(letters[1:3], LETTERS[1:4])),
-               B = matrix(integer(12), 4)),
-    dbl = list(A = matrix(rnorm(9), nrow = 3, dimnames = list(1:3, letters[1:3]))),
+               NA_integer = matrix(rep(NA_integer_, 12), 4)),
+    dbl = list(A = matrix(rnorm(9), nrow = 3, dimnames = list(1:3, letters[1:3])),
+               NA_double = matrix(rep(NA_real_, 12), 4)),
     cplx = list(A = matrix(complex(9), 3)),
     inf = list(A = matrix(c(Inf, -Inf, -Inf, -Inf), 2)),
     char = list(A = matrix(LETTERS[1:12], 3), B = list(B1 = matrix(letters[1:9], 3))),
     bool = list(A = matrix(logical(9), 3), B = list(B1 = matrix(c(TRUE, FALSE, TRUE, TRUE), 2))),
-    na = list(A = matrix(rep(NA_real_, 9), 3),
-              B = list(B1 = matrix(rep(NA_complex_, 12), 4)),
-              C = matrix(NA_character_)),
+    na = list(NA_bool = matrix(rep(NA, 9), 3),
+              NA_cplx = list(B1 = matrix(rep(NA_complex_, 12), 4)),
+              NA_char = matrix(rep(NA_character_, 9), 3)),
     nan = list(A = matrix(rep(NaN, 9), 3),
-               B = list(B1 = matrix(rep(NaN, 12), 4))),
-    null = list(A = NULL, B = matrix(logical(0)))
+               B = list(matrix(rep(NaN, 12), 4, dimnames = list(1:4, LETTERS[1:3])))),
+    null = list(null = NULL,
+                zero_bool = matrix(logical(0)),
+                zero_char = matrix(character(0)),
+                zero_int = matrix(integer(0)),
+                zero_dbl = matrix(double(0)),
+                zero_cplx = matrix(complex(0)))
 )
 
 test_dataframe <- list(

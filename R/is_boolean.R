@@ -1,21 +1,28 @@
+#' @title
 #' Identify Boolean Values
 #'
 #' @description
-#' A wrapper for the base::is.logical(), base::isTRUE(), and base::isFALSE().
+#' A wrapper for the `base::is.logical()`, `base::isTRUE()`, and `base::isFALSE(`).
+#' Unlike the base functions, they exclude `NA` from being considered logical by default.
 #'
 #' @param x An atomic or recursive vector (i.e., c(), matrix(), list(), or data.frame()).
 #'
-#' @return A logical vector which has the same length and dimensions with `x`.
+#' @return A logical vector which has the same length and/or dimensions with `x`.
 #' @export
 #'
 #' @examples
 #' test <- list(
-#'     num = c(1.2, -3.3, 7.5, 2.9),
-#'     char = c(LETT = LETTERS[1:3], lett = letters[1:3]),
+#'     int = 1:5,
+#'     dbl = c(1.2, -3.3, 7.5, 2.9),
+#'     char = list(LETT = LETTERS[1:3], lett = letters[1:3]),
 #'     cplx = matrix(complex(real = 1:12, imaginary = 3:9), nrow = 3),
 #'     bool = data.frame(true = rep(TRUE, 5), false = rep(FALSE, 5)),
-#'     na = list(NA, NA_character_, NA_complex_, NA_integer_, NA_real_),
-#'     special = list(TRUE, FALSE, NaN, NULL)
+#'     na = list(na_bool = NA,
+#'               na_char = NA_character_,
+#'               na_cplx = NA_complex_,
+#'               na_int = NA_integer_,
+#'               na_dbl = NA_real_),
+#'     special = list(true = TRUE, false = FALSE, nan = NaN, null = NULL)
 #' )
 #' is_TRUE(test)
 #' is_FALSE(test)
@@ -68,12 +75,16 @@ is_FALSE.data.frame <- function(x) .is_boolean_dataframe(x, only_FALSE = TRUE)
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 .is_boolean_vector <- function(vct, only_TRUE = FALSE, only_FALSE = FALSE)
 {
-    if ( is.null(vct) | length(vct) == 0 ) return(FALSE)
+    if ( is.null(vct) | length(vct) == 0 )
+        return(FALSE)
+
     vapply(
         X = vct,
         FUN = function(x, .only_TRUE, .only_FALSE)
         {
-            if (is.null(x)) return(FALSE)
+            if ( is.null(x) | length(x) == 0 )
+                return(FALSE)
+
             if (.only_TRUE)
                 isTRUE(x)
             else if (.only_FALSE)
@@ -92,7 +103,9 @@ is_FALSE.data.frame <- function(x) .is_boolean_dataframe(x, only_FALSE = TRUE)
 
 .is_boolean_matrix <- function(mat, only_TRUE = FALSE, only_FALSE = FALSE)
 {
-    if ( is.null(mat) | length(mat) == 0 ) return(FALSE)
+    if ( is.null(mat) | length(mat) == 0 )
+        return(FALSE)
+
     shape <- dim(mat)
     ret <- mapply(
         FUN = function(x)
@@ -115,7 +128,9 @@ is_FALSE.data.frame <- function(x) .is_boolean_dataframe(x, only_FALSE = TRUE)
 
 .is_boolean_list <- function(lst, only_TRUE = FALSE, only_FALSE = FALSE)
 {
-    if ( is.null(lst) | length(lst) == 0 ) return(FALSE)
+    if ( is.null(lst) | length(lst) == 0 )
+        return(FALSE)
+
     if ( is.null(dim(lst)) & inherits(lst, "list") )
     {
         ret <- lapply(

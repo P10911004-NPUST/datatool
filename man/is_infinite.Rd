@@ -10,7 +10,7 @@ is_infinite(x)
 \item{x}{An atomic or recursive vector (i.e., c(), matrix(), list(), or data.frame()).}
 }
 \value{
-A logical vector which has the same length / dimensions with \code{x}.
+A logical vector which has the same length and/or dimensions with \code{x}.
 }
 \description{
 A wrapper for \code{base::is.infinite()}.

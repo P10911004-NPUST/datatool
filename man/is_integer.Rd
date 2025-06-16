@@ -4,26 +4,32 @@
 \alias{is_integer}
 \title{Identify Integer Values}
 \usage{
-is_integer(x)
+is_integer(x, include_NA_integer = FALSE)
 }
 \arguments{
 \item{x}{An atomic or recursive vector (i.e., c(), matrix(), list(), or data.frame()).}
+
+\item{include_NA_integer}{Logical (default: FALSE). Consider \code{NA_integer_} as an integer value?}
 }
 \value{
-A logical vector which has the same length and dimensions with \code{x}.
+A logical vector which has the same length and/or dimensions with \code{x}.
 }
 \description{
-A wrapper for the base::is.integer().
+A wrapper for the \code{base::is.integer()}. By default, NOT including \code{NA_integer_}.
 }
 \examples{
 test <- list(
-    num = c(1.2, -3.3, 7.5, 2.9),
     int = 1:5,
-    char = c(LETT = LETTERS[1:3], lett = letters[1:3]),
+    dbl = c(1.2, -3.3, 7.5, 2.9),
+    char = list(LETT = LETTERS[1:3], lett = letters[1:3]),
     cplx = matrix(complex(real = 1:12, imaginary = 3:9), nrow = 3),
     bool = data.frame(true = rep(TRUE, 5), false = rep(FALSE, 5)),
-    na = list(NA, NA_character_, NA_complex_, na_int = NA_integer_, NA_real_),
-    special = list(TRUE, FALSE, NaN, NULL)
+    na = list(na_bool = NA,
+              na_char = NA_character_,
+              na_cplx = NA_complex_,
+              na_int = NA_integer_,
+              na_dbl = NA_real_),
+    special = list(true = TRUE, false = FALSE, nan = NaN, null = NULL)
 )
 is_integer(test)
 }

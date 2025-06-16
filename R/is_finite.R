@@ -1,15 +1,15 @@
-#' @title Identify Finite Numbers
+#' @title
+#' Identify Finite Numbers
 #'
 #' @description
-#' A wrapper for `base::is.finite()`. By default, `statool::is_finite()` doesn't
-#' consider logical value (i.e., `TRUE` and `FALSE`) as finite values,
-#' which is differ from `base::is.finite()`.
+#' A wrapper for `base::is.finite()`. Unlike the base implementation,
+#' this version excludes logical values from being considered finite by default.
 #'
 #' @param x An atomic or recursive vector (i.e., c(), matrix(), list(), or data.frame()).
 #' @param include_boolean Logical (default: FALSE). Consider boolean values as finite?
 #' @param include_complex Logical (default: TRUE). Consider complex values as finite?
 #'
-#' @return A logical vector which has the same length / dimensions with `x`.
+#' @return A logical vector which has the same length and/or dimensions with `x`.
 #' @export
 #'
 #' @examples
@@ -76,7 +76,8 @@ is_finite.data.frame <- function(
         include_boolean = FALSE,
         include_complex = TRUE
 ) {
-    if ( is.null(vct) | length(vct) == 0 ) return(FALSE)
+    if ( is.null(vct) | length(vct) == 0 )
+        return(FALSE)
 
     vapply(
         X = vct,
@@ -100,8 +101,8 @@ is_finite.data.frame <- function(
         include_boolean = FALSE,
         include_complex = TRUE
 ) {
-    if ( is.null(mat) | length(mat) == 0 ) return(FALSE)
-    if (is.null(mat)) return(FALSE)
+    if ( is.null(mat) | length(mat) == 0 )
+        return(FALSE)
 
     shape <- dim(mat)
     ret <- mapply(
@@ -126,7 +127,8 @@ is_finite.data.frame <- function(
         include_boolean = FALSE,
         include_complex = TRUE
 ) {
-    if (is.null(lst) | length(lst) == 0) return(FALSE)
+    if (is.null(lst) | length(lst) == 0)
+        return(FALSE)
 
     if ( is.null(dim(lst)) & inherits(lst, "list") )
     {
