@@ -15,6 +15,6 @@ You can install the development version of `datatool` from [GitHub](https://gith
 
 ``` r
 if (!require(devtools)) install.packages("devtools")
-devtools::install_github("P10911004-NPUST/datatool", upgrade = "always", quiet = TRUE)
+devtools::install_github("P10911004-NPUST/datatool")
 ```
 
