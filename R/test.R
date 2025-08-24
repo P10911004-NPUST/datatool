@@ -65,7 +65,3 @@ test_dataframe <- list(
         special = c(NaN, NA, NA, NaN, NA)
     )
 )
-
-
-
-

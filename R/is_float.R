@@ -197,17 +197,3 @@ is_float.data.frame <- function(
     )
     return(as.data.frame(ret))
 }
-
-
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-# Testing
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-if (FALSE)
-{
-    is_float(test_vector)
-    is_float(test_matrix)
-    is_float(test_matrix, include_NA_real = TRUE)
-    is_float(test_list, include_NaN = TRUE)
-    is_float(test_dataframe, include_NaN = TRUE)
-    is_float(test_dataframe, include_Inf = TRUE)
-}
