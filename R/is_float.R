@@ -75,6 +75,58 @@ is_float.data.frame <- function(
 }
 
 
+#' @rdname is_float
+#' @export
+is_double <- function(
+        x,
+        include_Inf = FALSE,
+        include_NaN = FALSE,
+        include_NA_real = FALSE
+) {
+    UseMethod("is_double")
+}
+
+#' @export
+is_double.default <- function(
+        x,
+        include_Inf = FALSE,
+        include_NaN = FALSE,
+        include_NA_real = FALSE
+) {
+    .is_float_vector(x, include_Inf, include_NaN, include_NA_real)
+}
+
+#' @export
+is_double.matrix <- function(
+        x,
+        include_Inf = FALSE,
+        include_NaN = FALSE,
+        include_NA_real = FALSE
+) {
+    .is_float_matrix(x, include_Inf, include_NaN, include_NA_real)
+}
+
+#' @export
+is_double.list <- function(
+        x,
+        include_Inf = FALSE,
+        include_NaN = FALSE,
+        include_NA_real = FALSE
+) {
+    .is_float_list(x, include_Inf, include_NaN, include_NA_real)
+}
+
+#' @export
+is_double.data.frame <- function(
+        x,
+        include_Inf = FALSE,
+        include_NaN = FALSE,
+        include_NA_real = FALSE
+) {
+    .is_float_dataframe(x, include_Inf, include_NaN, include_NA_real)
+}
+
+
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # Internal functions ====
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

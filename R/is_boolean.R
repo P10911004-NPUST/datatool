@@ -43,6 +43,22 @@ is_boolean.data.frame <- function(x) .is_boolean_dataframe(x)
 
 #' @rdname is_boolean
 #' @export
+is_logical <- function(x)
+{
+    UseMethod("is_logical")
+}
+#' @export
+is_logical.default <- function(x) .is_boolean_vector(x)
+#' @export
+is_logical.matrix <- function(x) .is_boolean_matrix(x)
+#' @export
+is_logical.list <- function(x) .is_boolean_list(x)
+#' @export
+is_logical.data.frame <- function(x) .is_boolean_dataframe(x)
+
+
+#' @rdname is_boolean
+#' @export
 is_TRUE <- function(x)
 {
     UseMethod("is_TRUE")

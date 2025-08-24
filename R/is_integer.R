@@ -147,15 +147,3 @@ is_integer.data.frame <- function(x, include_NA_integer = FALSE)
     )
     return(as.data.frame(ret))
 }
-
-
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-# Testing
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-if (FALSE)
-{
-    is_integer(test_vector)
-    is_integer(test_matrix)
-    is_integer(test_list, include_NA_integer = TRUE)
-    is_integer(test_dataframe)
-}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/df_reshape.R
 \name{wide_to_long}
 \alias{wide_to_long}
-\title{Data Reshape}
+\title{Reshape Data Frame}
 \usage{
 wide_to_long(
   data,

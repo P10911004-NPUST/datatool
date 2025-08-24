@@ -9,6 +9,7 @@ Authors@R:
         comment = c(ORCID = "0000-0002-9840-5836")
     )
 Description: Output identical data structure as the input after diagnostic.
+    The data type diagnostic is intuitive and specific compare to the `base` version.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

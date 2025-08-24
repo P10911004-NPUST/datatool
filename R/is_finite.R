@@ -176,14 +176,3 @@ is_finite.data.frame <- function(
     return(as.data.frame(ret))
 }
 
-
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-# Testing
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-if (FALSE)
-{
-    is_finite(test_vector)
-    is_finite(test_matrix, include_boolean = TRUE, include_complex = FALSE)
-    is_finite(test_list)
-    is_finite(test_dataframe)
-}

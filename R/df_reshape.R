@@ -83,22 +83,3 @@ wide_to_long <- function(
 
 }
 
-#
-# long_to_wide <- function(
-#         data,
-#         cols,
-#         val,
-#         keep_unused = TRUE
-# ) {
-#
-#     if (inherits(data, "data.frame")) mat <- as.matrix(data)
-# }
-#
-# data("iris")
-# df <- iris
-# reshape(df, direction = "wide",
-#         idvar = c("Petal.Width", "Petal.Length", "Sepal.Width"),  # exclude the `val` column
-#         timevar = "Species", # Which column as key
-#         sep = ""
-# )
-

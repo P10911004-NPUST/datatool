@@ -2,11 +2,14 @@
 % Please edit documentation in R/is_boolean.R
 \name{is_boolean}
 \alias{is_boolean}
+\alias{is_logical}
 \alias{is_TRUE}
 \alias{is_FALSE}
 \title{Identify Boolean Values}
 \usage{
 is_boolean(x)
+
+is_logical(x)
 
 is_TRUE(x)
 

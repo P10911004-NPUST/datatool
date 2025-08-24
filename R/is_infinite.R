@@ -110,15 +110,3 @@ is_infinite.data.frame <- function(x) .is_infinite_dataframe(x)
     )
     return(as.data.frame(ret))
 }
-
-
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-# Testing
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-if (FALSE)
-{
-    is_infinite(test_vector)
-    is_infinite(test_matrix)
-    is_infinite(test_list)
-    is_infinite(test_dataframe)
-}

@@ -125,14 +125,3 @@ is_NaN.data.frame <- function(x) .is_NaN_dataframe(x)
     return(as.data.frame(ret))
 }
 
-
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-# Testing
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-if (FALSE)
-{
-    is_NaN(test_vector)
-    is_NaN(test_matrix)
-    is_NaN(test_list)
-    is_NaN(test_dataframe)
-}

@@ -127,14 +127,3 @@ is_NA.data.frame <- function(x) .is_NA_dataframe(x)
     return(as.data.frame(ret))
 }
 
-
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-# Testing
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-if (FALSE)
-{
-    is_NA(test_vector)
-    is_NA(test_matrix)
-    is_NA(test_list)
-    is_NA(test_dataframe)
-}

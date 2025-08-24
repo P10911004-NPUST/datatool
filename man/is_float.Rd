@@ -2,9 +2,12 @@
 % Please edit documentation in R/is_float.R
 \name{is_float}
 \alias{is_float}
+\alias{is_double}
 \title{Identify Floating-Point Numbers}
 \usage{
 is_float(x, include_Inf = FALSE, include_NaN = FALSE, include_NA_real = FALSE)
+
+is_double(x, include_Inf = FALSE, include_NaN = FALSE, include_NA_real = FALSE)
 }
 \arguments{
 \item{x}{An atomic or recursive vector (i.e., c(), matrix(), list(), or data.frame()).}

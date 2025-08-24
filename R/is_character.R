@@ -113,15 +113,4 @@ is_character.data.frame <- function(x) .is_character_dataframe(x)
 }
 
 
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-# Testing
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-if (FALSE)
-{
-    is_character(test_vector)
-    is_character(test_matrix)
-    is_character(test_list)
-    is_character(test_dataframe)
-}
-
 
